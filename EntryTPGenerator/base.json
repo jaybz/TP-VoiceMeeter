@@ -1,0 +1,255 @@
+{
+  "sdk": 2,
+  "version": 1,
+  "name": "TP-VoiceMeeter Plugin",
+  "id": "TPVoiceMeeter",
+  "configuration": {
+    "colorDark": "#225834",
+    "colorLight": "#45b168"
+  },
+  "plugin_start_cmd": "\"%TP_PLUGIN_FOLDER%TP-VoiceMeeter\\TP-VoiceMeeter.exe\"",
+  "categories": [
+    {
+      "id": "TPVoiceMeeterCommands",
+      "name": "TP-VoiceMeeter Commands",
+      "actions": [
+        {
+          "id": "tpvm_strip_toggle",
+          "prefix": "Voicemeeter",
+          "name": "Set Strip Toggle State",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Strip[{$tpvm_index$}].{$tpvm_toggle$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Strip Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_toggle",
+              "type": "choice",
+              "label": "Toggle",
+              "default": "Mute",
+              "valueChoices": [
+                "Mono",
+                "Mute",
+                "Solo",
+                "MC",
+                "PostReverb",
+                "PostDelay",
+                "PostFx1",
+                "PostFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "choice",
+              "label": "Set State",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tpvm_bus_toggle",
+          "prefix": "Voicemeeter",
+          "name": "Set Bus Toggle State",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Bus[{$tpvm_index$}].{$tpvm_toggle$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Bus Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_toggle",
+              "type": "choice",
+              "label": "Toggle",
+              "default": "Mute",
+              "valueChoices": [
+                "Mono",
+                "Mute",
+                "Solo",
+                "MC",
+                "PostReverb",
+                "PostDelay",
+                "PostFx1",
+                "PostFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "choice",
+              "label": "Set State",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tpvm_strip_setting",
+          "prefix": "Voicemeeter",
+          "name": "Set Strip Setting",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Strip[{$tpvm_index$}].{$tpvm_setting$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Strip Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_setting",
+              "type": "choice",
+              "label": "Setting",
+              "default": "Gain",
+              "valueChoices": [
+                "Gain",
+                "Pan_x",
+                "Pan_y",
+                "Color_x",
+                "Color_y",
+                "fx_x",
+                "fx_y",
+                "Comp",
+                "Gate",
+                "Limit",
+                "EQGain1",
+                "EQGain2",
+                "EQGain3",
+                "Reverb",
+                "Delay",
+                "Fx1",
+                "Fx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "text",
+              "label": "Set Value",
+              "default": "0"
+            }
+          ]
+        },
+        {
+          "id": "tpvm_bus_setting",
+          "prefix": "Voicemeeter",
+          "name": "Set Bus Setting",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Bus[{$tpvm_index$}].{$tpvm_setting$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Bus Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_setting",
+              "type": "choice",
+              "label": "Setting",
+              "default": "Gain",
+              "valueChoices": [
+                "Gain",
+                "ReturnReverb",
+                "ReturnDelay",
+                "ReturnFx1",
+                "ReturnFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "text",
+              "label": "Set Value",
+              "default": "0"
+            }
+          ]
+        }
+      ],
+      "events": [],
+      "states": [
+        {
+          "id": "tpvm_connected",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Connected",
+          "default": "0",
+          "valueChoices": [ "0", "1" ]
+        }
+      ]
+    },
+    {
+      "id": "TPVoiceMeeterStripEvents",
+      "name": "TP-VoiceMeeter Strip Events",
+      "actions": [
+      ],
+      "events": [
+      ],
+      "states": [
+      ]
+    },
+    {
+      "id": "TPVoiceMeeterBusEvents",
+      "name": "TP-VoiceMeeter Bus Events",
+      "actions": [
+      ],
+      "events": [
+      ],
+      "states": [
+      ]
+    }
+  ]
+}

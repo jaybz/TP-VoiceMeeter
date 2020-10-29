@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "TP_VoiceMeeter": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

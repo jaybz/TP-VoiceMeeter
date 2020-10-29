@@ -1,0 +1,5240 @@
+{
+  "sdk": 2,
+  "version": 1,
+  "name": "TP-VoiceMeeter Plugin",
+  "id": "TPVoiceMeeter",
+  "configuration": {
+    "colorDark": "#225834",
+    "colorLight": "#45b168"
+  },
+  "plugin_start_cmd": "\"%TP_PLUGIN_FOLDER%TP-VoiceMeeter\\TP-VoiceMeeter.exe\"",
+  "categories": [
+    {
+      "id": "TPVoiceMeeterCommands",
+      "name": "TP-VoiceMeeter Commands",
+      "actions": [
+        {
+          "id": "tpvm_strip_toggle",
+          "prefix": "Voicemeeter",
+          "name": "Set Strip Toggle State",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Strip[{$tpvm_index$}].{$tpvm_toggle$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Strip Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_toggle",
+              "type": "choice",
+              "label": "Toggle",
+              "default": "Mute",
+              "valueChoices": [
+                "Mono",
+                "Mute",
+                "Solo",
+                "MC",
+                "PostReverb",
+                "PostDelay",
+                "PostFx1",
+                "PostFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "choice",
+              "label": "Set State",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tpvm_bus_toggle",
+          "prefix": "Voicemeeter",
+          "name": "Set Bus Toggle State",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Bus[{$tpvm_index$}].{$tpvm_toggle$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Bus Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_toggle",
+              "type": "choice",
+              "label": "Toggle",
+              "default": "Mute",
+              "valueChoices": [
+                "Mono",
+                "Mute",
+                "Solo",
+                "MC",
+                "PostReverb",
+                "PostDelay",
+                "PostFx1",
+                "PostFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "choice",
+              "label": "Set State",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tpvm_strip_setting",
+          "prefix": "Voicemeeter",
+          "name": "Set Strip Setting",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Strip[{$tpvm_index$}].{$tpvm_setting$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Strip Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_setting",
+              "type": "choice",
+              "label": "Setting",
+              "default": "Gain",
+              "valueChoices": [
+                "Gain",
+                "Pan_x",
+                "Pan_y",
+                "Color_x",
+                "Color_y",
+                "fx_x",
+                "fx_y",
+                "Comp",
+                "Gate",
+                "Limit",
+                "EQGain1",
+                "EQGain2",
+                "EQGain3",
+                "Reverb",
+                "Delay",
+                "Fx1",
+                "Fx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "text",
+              "label": "Set Value",
+              "default": "0"
+            }
+          ]
+        },
+        {
+          "id": "tpvm_bus_setting",
+          "prefix": "Voicemeeter",
+          "name": "Set Bus Setting",
+          "type": "communicate",
+          "tryInline": true,
+          "format": "Set Bus[{$tpvm_index$}].{$tpvm_setting$}  to {$tpvm_state$}",
+          "data": [
+            {
+              "id": "tpvm_index",
+              "type": "choice",
+              "label": "Bus Number",
+              "default": "0",
+              "valueChoices": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "id": "tpvm_setting",
+              "type": "choice",
+              "label": "Setting",
+              "default": "Gain",
+              "valueChoices": [
+                "Gain",
+                "ReturnReverb",
+                "ReturnDelay",
+                "ReturnFx1",
+                "ReturnFx2"
+              ]
+            },
+            {
+              "id": "tpvm_state",
+              "type": "text",
+              "label": "Set Value",
+              "default": "0"
+            }
+          ]
+        }
+      ],
+      "events": [],
+      "states": [
+        {
+          "id": "tpvm_connected",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Connected",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_input_level0",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[0]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[1]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[2]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[3]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level4",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[4]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level5",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[5]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level6",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[6]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level7",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[7]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level8",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[8]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level9",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[9]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level10",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[10]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level11",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[11]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level12",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[12]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level13",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[13]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level14",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[14]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level15",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[15]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level16",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[16]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level17",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[17]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level18",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[18]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level19",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[19]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level20",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[20]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level21",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[21]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level22",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[22]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level23",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[23]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level24",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[24]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level25",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[25]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level26",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[26]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level27",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[27]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level28",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[28]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level29",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[29]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level30",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[30]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level31",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[31]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level32",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[32]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level33",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[33]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level0",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[0]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[1]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[2]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[3]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level4",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[4]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level5",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[5]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level6",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[6]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level7",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[7]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level8",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[8]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level9",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[9]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level10",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[10]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level11",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[11]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level12",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[12]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level13",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[13]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level14",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[14]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level15",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[15]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level16",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[16]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level17",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[17]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level18",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[18]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level19",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[19]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level20",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[20]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level21",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[21]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level22",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[22]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level23",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[23]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level24",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[24]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level25",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[25]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level26",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[26]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level27",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[27]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level28",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[28]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level29",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[29]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level30",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[30]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level31",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[31]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level32",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[32]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level33",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[33]",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "id": "TPVoiceMeeterStripEvents",
+      "name": "TP-VoiceMeeter Strip Events",
+      "actions": [],
+      "events": [
+        {
+          "id": "tpvm_strip0_mono_event",
+          "name": "TP-VoiceMeeter Strip[0].Mono",
+          "format": "TP-VoiceMeeter Strip[0].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_mono"
+        },
+        {
+          "id": "tpvm_strip0_mute_event",
+          "name": "TP-VoiceMeeter Strip[0].Mute",
+          "format": "TP-VoiceMeeter Strip[0].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_mute"
+        },
+        {
+          "id": "tpvm_strip0_solo_event",
+          "name": "TP-VoiceMeeter Strip[0].Solo",
+          "format": "TP-VoiceMeeter Strip[0].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_solo"
+        },
+        {
+          "id": "tpvm_strip0_mc_event",
+          "name": "TP-VoiceMeeter Strip[0].MC",
+          "format": "TP-VoiceMeeter Strip[0].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_mc"
+        },
+        {
+          "id": "tpvm_strip0_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[0].PostReverb",
+          "format": "TP-VoiceMeeter Strip[0].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_postreverb"
+        },
+        {
+          "id": "tpvm_strip0_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[0].PostDelay",
+          "format": "TP-VoiceMeeter Strip[0].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_postdelay"
+        },
+        {
+          "id": "tpvm_strip0_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[0].PostFx1",
+          "format": "TP-VoiceMeeter Strip[0].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_postfx1"
+        },
+        {
+          "id": "tpvm_strip0_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[0].PostFx2",
+          "format": "TP-VoiceMeeter Strip[0].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_postfx2"
+        },
+        {
+          "id": "tpvm_strip0_a1_event",
+          "name": "TP-VoiceMeeter Strip[0].A1",
+          "format": "TP-VoiceMeeter Strip[0].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_a1"
+        },
+        {
+          "id": "tpvm_strip0_a2_event",
+          "name": "TP-VoiceMeeter Strip[0].A2",
+          "format": "TP-VoiceMeeter Strip[0].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_a2"
+        },
+        {
+          "id": "tpvm_strip0_a3_event",
+          "name": "TP-VoiceMeeter Strip[0].A3",
+          "format": "TP-VoiceMeeter Strip[0].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_a3"
+        },
+        {
+          "id": "tpvm_strip0_a4_event",
+          "name": "TP-VoiceMeeter Strip[0].A4",
+          "format": "TP-VoiceMeeter Strip[0].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_a4"
+        },
+        {
+          "id": "tpvm_strip0_a5_event",
+          "name": "TP-VoiceMeeter Strip[0].A5",
+          "format": "TP-VoiceMeeter Strip[0].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_a5"
+        },
+        {
+          "id": "tpvm_strip0_b1_event",
+          "name": "TP-VoiceMeeter Strip[0].B1",
+          "format": "TP-VoiceMeeter Strip[0].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_b1"
+        },
+        {
+          "id": "tpvm_strip0_b2_event",
+          "name": "TP-VoiceMeeter Strip[0].B2",
+          "format": "TP-VoiceMeeter Strip[0].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_b2"
+        },
+        {
+          "id": "tpvm_strip0_b3_event",
+          "name": "TP-VoiceMeeter Strip[0].B3",
+          "format": "TP-VoiceMeeter Strip[0].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip0_b3"
+        },
+        {
+          "id": "tpvm_strip1_mono_event",
+          "name": "TP-VoiceMeeter Strip[1].Mono",
+          "format": "TP-VoiceMeeter Strip[1].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_mono"
+        },
+        {
+          "id": "tpvm_strip1_mute_event",
+          "name": "TP-VoiceMeeter Strip[1].Mute",
+          "format": "TP-VoiceMeeter Strip[1].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_mute"
+        },
+        {
+          "id": "tpvm_strip1_solo_event",
+          "name": "TP-VoiceMeeter Strip[1].Solo",
+          "format": "TP-VoiceMeeter Strip[1].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_solo"
+        },
+        {
+          "id": "tpvm_strip1_mc_event",
+          "name": "TP-VoiceMeeter Strip[1].MC",
+          "format": "TP-VoiceMeeter Strip[1].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_mc"
+        },
+        {
+          "id": "tpvm_strip1_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[1].PostReverb",
+          "format": "TP-VoiceMeeter Strip[1].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_postreverb"
+        },
+        {
+          "id": "tpvm_strip1_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[1].PostDelay",
+          "format": "TP-VoiceMeeter Strip[1].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_postdelay"
+        },
+        {
+          "id": "tpvm_strip1_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[1].PostFx1",
+          "format": "TP-VoiceMeeter Strip[1].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_postfx1"
+        },
+        {
+          "id": "tpvm_strip1_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[1].PostFx2",
+          "format": "TP-VoiceMeeter Strip[1].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_postfx2"
+        },
+        {
+          "id": "tpvm_strip1_a1_event",
+          "name": "TP-VoiceMeeter Strip[1].A1",
+          "format": "TP-VoiceMeeter Strip[1].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_a1"
+        },
+        {
+          "id": "tpvm_strip1_a2_event",
+          "name": "TP-VoiceMeeter Strip[1].A2",
+          "format": "TP-VoiceMeeter Strip[1].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_a2"
+        },
+        {
+          "id": "tpvm_strip1_a3_event",
+          "name": "TP-VoiceMeeter Strip[1].A3",
+          "format": "TP-VoiceMeeter Strip[1].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_a3"
+        },
+        {
+          "id": "tpvm_strip1_a4_event",
+          "name": "TP-VoiceMeeter Strip[1].A4",
+          "format": "TP-VoiceMeeter Strip[1].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_a4"
+        },
+        {
+          "id": "tpvm_strip1_a5_event",
+          "name": "TP-VoiceMeeter Strip[1].A5",
+          "format": "TP-VoiceMeeter Strip[1].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_a5"
+        },
+        {
+          "id": "tpvm_strip1_b1_event",
+          "name": "TP-VoiceMeeter Strip[1].B1",
+          "format": "TP-VoiceMeeter Strip[1].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_b1"
+        },
+        {
+          "id": "tpvm_strip1_b2_event",
+          "name": "TP-VoiceMeeter Strip[1].B2",
+          "format": "TP-VoiceMeeter Strip[1].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_b2"
+        },
+        {
+          "id": "tpvm_strip1_b3_event",
+          "name": "TP-VoiceMeeter Strip[1].B3",
+          "format": "TP-VoiceMeeter Strip[1].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip1_b3"
+        },
+        {
+          "id": "tpvm_strip2_mono_event",
+          "name": "TP-VoiceMeeter Strip[2].Mono",
+          "format": "TP-VoiceMeeter Strip[2].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_mono"
+        },
+        {
+          "id": "tpvm_strip2_mute_event",
+          "name": "TP-VoiceMeeter Strip[2].Mute",
+          "format": "TP-VoiceMeeter Strip[2].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_mute"
+        },
+        {
+          "id": "tpvm_strip2_solo_event",
+          "name": "TP-VoiceMeeter Strip[2].Solo",
+          "format": "TP-VoiceMeeter Strip[2].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_solo"
+        },
+        {
+          "id": "tpvm_strip2_mc_event",
+          "name": "TP-VoiceMeeter Strip[2].MC",
+          "format": "TP-VoiceMeeter Strip[2].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_mc"
+        },
+        {
+          "id": "tpvm_strip2_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[2].PostReverb",
+          "format": "TP-VoiceMeeter Strip[2].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_postreverb"
+        },
+        {
+          "id": "tpvm_strip2_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[2].PostDelay",
+          "format": "TP-VoiceMeeter Strip[2].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_postdelay"
+        },
+        {
+          "id": "tpvm_strip2_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[2].PostFx1",
+          "format": "TP-VoiceMeeter Strip[2].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_postfx1"
+        },
+        {
+          "id": "tpvm_strip2_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[2].PostFx2",
+          "format": "TP-VoiceMeeter Strip[2].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_postfx2"
+        },
+        {
+          "id": "tpvm_strip2_a1_event",
+          "name": "TP-VoiceMeeter Strip[2].A1",
+          "format": "TP-VoiceMeeter Strip[2].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_a1"
+        },
+        {
+          "id": "tpvm_strip2_a2_event",
+          "name": "TP-VoiceMeeter Strip[2].A2",
+          "format": "TP-VoiceMeeter Strip[2].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_a2"
+        },
+        {
+          "id": "tpvm_strip2_a3_event",
+          "name": "TP-VoiceMeeter Strip[2].A3",
+          "format": "TP-VoiceMeeter Strip[2].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_a3"
+        },
+        {
+          "id": "tpvm_strip2_a4_event",
+          "name": "TP-VoiceMeeter Strip[2].A4",
+          "format": "TP-VoiceMeeter Strip[2].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_a4"
+        },
+        {
+          "id": "tpvm_strip2_a5_event",
+          "name": "TP-VoiceMeeter Strip[2].A5",
+          "format": "TP-VoiceMeeter Strip[2].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_a5"
+        },
+        {
+          "id": "tpvm_strip2_b1_event",
+          "name": "TP-VoiceMeeter Strip[2].B1",
+          "format": "TP-VoiceMeeter Strip[2].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_b1"
+        },
+        {
+          "id": "tpvm_strip2_b2_event",
+          "name": "TP-VoiceMeeter Strip[2].B2",
+          "format": "TP-VoiceMeeter Strip[2].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_b2"
+        },
+        {
+          "id": "tpvm_strip2_b3_event",
+          "name": "TP-VoiceMeeter Strip[2].B3",
+          "format": "TP-VoiceMeeter Strip[2].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip2_b3"
+        },
+        {
+          "id": "tpvm_strip3_mono_event",
+          "name": "TP-VoiceMeeter Strip[3].Mono",
+          "format": "TP-VoiceMeeter Strip[3].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_mono"
+        },
+        {
+          "id": "tpvm_strip3_mute_event",
+          "name": "TP-VoiceMeeter Strip[3].Mute",
+          "format": "TP-VoiceMeeter Strip[3].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_mute"
+        },
+        {
+          "id": "tpvm_strip3_solo_event",
+          "name": "TP-VoiceMeeter Strip[3].Solo",
+          "format": "TP-VoiceMeeter Strip[3].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_solo"
+        },
+        {
+          "id": "tpvm_strip3_mc_event",
+          "name": "TP-VoiceMeeter Strip[3].MC",
+          "format": "TP-VoiceMeeter Strip[3].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_mc"
+        },
+        {
+          "id": "tpvm_strip3_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[3].PostReverb",
+          "format": "TP-VoiceMeeter Strip[3].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_postreverb"
+        },
+        {
+          "id": "tpvm_strip3_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[3].PostDelay",
+          "format": "TP-VoiceMeeter Strip[3].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_postdelay"
+        },
+        {
+          "id": "tpvm_strip3_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[3].PostFx1",
+          "format": "TP-VoiceMeeter Strip[3].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_postfx1"
+        },
+        {
+          "id": "tpvm_strip3_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[3].PostFx2",
+          "format": "TP-VoiceMeeter Strip[3].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_postfx2"
+        },
+        {
+          "id": "tpvm_strip3_a1_event",
+          "name": "TP-VoiceMeeter Strip[3].A1",
+          "format": "TP-VoiceMeeter Strip[3].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_a1"
+        },
+        {
+          "id": "tpvm_strip3_a2_event",
+          "name": "TP-VoiceMeeter Strip[3].A2",
+          "format": "TP-VoiceMeeter Strip[3].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_a2"
+        },
+        {
+          "id": "tpvm_strip3_a3_event",
+          "name": "TP-VoiceMeeter Strip[3].A3",
+          "format": "TP-VoiceMeeter Strip[3].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_a3"
+        },
+        {
+          "id": "tpvm_strip3_a4_event",
+          "name": "TP-VoiceMeeter Strip[3].A4",
+          "format": "TP-VoiceMeeter Strip[3].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_a4"
+        },
+        {
+          "id": "tpvm_strip3_a5_event",
+          "name": "TP-VoiceMeeter Strip[3].A5",
+          "format": "TP-VoiceMeeter Strip[3].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_a5"
+        },
+        {
+          "id": "tpvm_strip3_b1_event",
+          "name": "TP-VoiceMeeter Strip[3].B1",
+          "format": "TP-VoiceMeeter Strip[3].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_b1"
+        },
+        {
+          "id": "tpvm_strip3_b2_event",
+          "name": "TP-VoiceMeeter Strip[3].B2",
+          "format": "TP-VoiceMeeter Strip[3].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_b2"
+        },
+        {
+          "id": "tpvm_strip3_b3_event",
+          "name": "TP-VoiceMeeter Strip[3].B3",
+          "format": "TP-VoiceMeeter Strip[3].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip3_b3"
+        },
+        {
+          "id": "tpvm_strip4_mono_event",
+          "name": "TP-VoiceMeeter Strip[4].Mono",
+          "format": "TP-VoiceMeeter Strip[4].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_mono"
+        },
+        {
+          "id": "tpvm_strip4_mute_event",
+          "name": "TP-VoiceMeeter Strip[4].Mute",
+          "format": "TP-VoiceMeeter Strip[4].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_mute"
+        },
+        {
+          "id": "tpvm_strip4_solo_event",
+          "name": "TP-VoiceMeeter Strip[4].Solo",
+          "format": "TP-VoiceMeeter Strip[4].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_solo"
+        },
+        {
+          "id": "tpvm_strip4_mc_event",
+          "name": "TP-VoiceMeeter Strip[4].MC",
+          "format": "TP-VoiceMeeter Strip[4].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_mc"
+        },
+        {
+          "id": "tpvm_strip4_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[4].PostReverb",
+          "format": "TP-VoiceMeeter Strip[4].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_postreverb"
+        },
+        {
+          "id": "tpvm_strip4_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[4].PostDelay",
+          "format": "TP-VoiceMeeter Strip[4].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_postdelay"
+        },
+        {
+          "id": "tpvm_strip4_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[4].PostFx1",
+          "format": "TP-VoiceMeeter Strip[4].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_postfx1"
+        },
+        {
+          "id": "tpvm_strip4_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[4].PostFx2",
+          "format": "TP-VoiceMeeter Strip[4].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_postfx2"
+        },
+        {
+          "id": "tpvm_strip4_a1_event",
+          "name": "TP-VoiceMeeter Strip[4].A1",
+          "format": "TP-VoiceMeeter Strip[4].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_a1"
+        },
+        {
+          "id": "tpvm_strip4_a2_event",
+          "name": "TP-VoiceMeeter Strip[4].A2",
+          "format": "TP-VoiceMeeter Strip[4].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_a2"
+        },
+        {
+          "id": "tpvm_strip4_a3_event",
+          "name": "TP-VoiceMeeter Strip[4].A3",
+          "format": "TP-VoiceMeeter Strip[4].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_a3"
+        },
+        {
+          "id": "tpvm_strip4_a4_event",
+          "name": "TP-VoiceMeeter Strip[4].A4",
+          "format": "TP-VoiceMeeter Strip[4].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_a4"
+        },
+        {
+          "id": "tpvm_strip4_a5_event",
+          "name": "TP-VoiceMeeter Strip[4].A5",
+          "format": "TP-VoiceMeeter Strip[4].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_a5"
+        },
+        {
+          "id": "tpvm_strip4_b1_event",
+          "name": "TP-VoiceMeeter Strip[4].B1",
+          "format": "TP-VoiceMeeter Strip[4].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_b1"
+        },
+        {
+          "id": "tpvm_strip4_b2_event",
+          "name": "TP-VoiceMeeter Strip[4].B2",
+          "format": "TP-VoiceMeeter Strip[4].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_b2"
+        },
+        {
+          "id": "tpvm_strip4_b3_event",
+          "name": "TP-VoiceMeeter Strip[4].B3",
+          "format": "TP-VoiceMeeter Strip[4].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip4_b3"
+        },
+        {
+          "id": "tpvm_strip5_mono_event",
+          "name": "TP-VoiceMeeter Strip[5].Mono",
+          "format": "TP-VoiceMeeter Strip[5].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_mono"
+        },
+        {
+          "id": "tpvm_strip5_mute_event",
+          "name": "TP-VoiceMeeter Strip[5].Mute",
+          "format": "TP-VoiceMeeter Strip[5].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_mute"
+        },
+        {
+          "id": "tpvm_strip5_solo_event",
+          "name": "TP-VoiceMeeter Strip[5].Solo",
+          "format": "TP-VoiceMeeter Strip[5].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_solo"
+        },
+        {
+          "id": "tpvm_strip5_mc_event",
+          "name": "TP-VoiceMeeter Strip[5].MC",
+          "format": "TP-VoiceMeeter Strip[5].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_mc"
+        },
+        {
+          "id": "tpvm_strip5_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[5].PostReverb",
+          "format": "TP-VoiceMeeter Strip[5].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_postreverb"
+        },
+        {
+          "id": "tpvm_strip5_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[5].PostDelay",
+          "format": "TP-VoiceMeeter Strip[5].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_postdelay"
+        },
+        {
+          "id": "tpvm_strip5_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[5].PostFx1",
+          "format": "TP-VoiceMeeter Strip[5].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_postfx1"
+        },
+        {
+          "id": "tpvm_strip5_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[5].PostFx2",
+          "format": "TP-VoiceMeeter Strip[5].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_postfx2"
+        },
+        {
+          "id": "tpvm_strip5_a1_event",
+          "name": "TP-VoiceMeeter Strip[5].A1",
+          "format": "TP-VoiceMeeter Strip[5].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_a1"
+        },
+        {
+          "id": "tpvm_strip5_a2_event",
+          "name": "TP-VoiceMeeter Strip[5].A2",
+          "format": "TP-VoiceMeeter Strip[5].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_a2"
+        },
+        {
+          "id": "tpvm_strip5_a3_event",
+          "name": "TP-VoiceMeeter Strip[5].A3",
+          "format": "TP-VoiceMeeter Strip[5].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_a3"
+        },
+        {
+          "id": "tpvm_strip5_a4_event",
+          "name": "TP-VoiceMeeter Strip[5].A4",
+          "format": "TP-VoiceMeeter Strip[5].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_a4"
+        },
+        {
+          "id": "tpvm_strip5_a5_event",
+          "name": "TP-VoiceMeeter Strip[5].A5",
+          "format": "TP-VoiceMeeter Strip[5].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_a5"
+        },
+        {
+          "id": "tpvm_strip5_b1_event",
+          "name": "TP-VoiceMeeter Strip[5].B1",
+          "format": "TP-VoiceMeeter Strip[5].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_b1"
+        },
+        {
+          "id": "tpvm_strip5_b2_event",
+          "name": "TP-VoiceMeeter Strip[5].B2",
+          "format": "TP-VoiceMeeter Strip[5].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_b2"
+        },
+        {
+          "id": "tpvm_strip5_b3_event",
+          "name": "TP-VoiceMeeter Strip[5].B3",
+          "format": "TP-VoiceMeeter Strip[5].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip5_b3"
+        },
+        {
+          "id": "tpvm_strip6_mono_event",
+          "name": "TP-VoiceMeeter Strip[6].Mono",
+          "format": "TP-VoiceMeeter Strip[6].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_mono"
+        },
+        {
+          "id": "tpvm_strip6_mute_event",
+          "name": "TP-VoiceMeeter Strip[6].Mute",
+          "format": "TP-VoiceMeeter Strip[6].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_mute"
+        },
+        {
+          "id": "tpvm_strip6_solo_event",
+          "name": "TP-VoiceMeeter Strip[6].Solo",
+          "format": "TP-VoiceMeeter Strip[6].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_solo"
+        },
+        {
+          "id": "tpvm_strip6_mc_event",
+          "name": "TP-VoiceMeeter Strip[6].MC",
+          "format": "TP-VoiceMeeter Strip[6].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_mc"
+        },
+        {
+          "id": "tpvm_strip6_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[6].PostReverb",
+          "format": "TP-VoiceMeeter Strip[6].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_postreverb"
+        },
+        {
+          "id": "tpvm_strip6_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[6].PostDelay",
+          "format": "TP-VoiceMeeter Strip[6].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_postdelay"
+        },
+        {
+          "id": "tpvm_strip6_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[6].PostFx1",
+          "format": "TP-VoiceMeeter Strip[6].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_postfx1"
+        },
+        {
+          "id": "tpvm_strip6_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[6].PostFx2",
+          "format": "TP-VoiceMeeter Strip[6].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_postfx2"
+        },
+        {
+          "id": "tpvm_strip6_a1_event",
+          "name": "TP-VoiceMeeter Strip[6].A1",
+          "format": "TP-VoiceMeeter Strip[6].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_a1"
+        },
+        {
+          "id": "tpvm_strip6_a2_event",
+          "name": "TP-VoiceMeeter Strip[6].A2",
+          "format": "TP-VoiceMeeter Strip[6].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_a2"
+        },
+        {
+          "id": "tpvm_strip6_a3_event",
+          "name": "TP-VoiceMeeter Strip[6].A3",
+          "format": "TP-VoiceMeeter Strip[6].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_a3"
+        },
+        {
+          "id": "tpvm_strip6_a4_event",
+          "name": "TP-VoiceMeeter Strip[6].A4",
+          "format": "TP-VoiceMeeter Strip[6].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_a4"
+        },
+        {
+          "id": "tpvm_strip6_a5_event",
+          "name": "TP-VoiceMeeter Strip[6].A5",
+          "format": "TP-VoiceMeeter Strip[6].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_a5"
+        },
+        {
+          "id": "tpvm_strip6_b1_event",
+          "name": "TP-VoiceMeeter Strip[6].B1",
+          "format": "TP-VoiceMeeter Strip[6].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_b1"
+        },
+        {
+          "id": "tpvm_strip6_b2_event",
+          "name": "TP-VoiceMeeter Strip[6].B2",
+          "format": "TP-VoiceMeeter Strip[6].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_b2"
+        },
+        {
+          "id": "tpvm_strip6_b3_event",
+          "name": "TP-VoiceMeeter Strip[6].B3",
+          "format": "TP-VoiceMeeter Strip[6].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip6_b3"
+        },
+        {
+          "id": "tpvm_strip7_mono_event",
+          "name": "TP-VoiceMeeter Strip[7].Mono",
+          "format": "TP-VoiceMeeter Strip[7].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_mono"
+        },
+        {
+          "id": "tpvm_strip7_mute_event",
+          "name": "TP-VoiceMeeter Strip[7].Mute",
+          "format": "TP-VoiceMeeter Strip[7].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_mute"
+        },
+        {
+          "id": "tpvm_strip7_solo_event",
+          "name": "TP-VoiceMeeter Strip[7].Solo",
+          "format": "TP-VoiceMeeter Strip[7].Solo=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_solo"
+        },
+        {
+          "id": "tpvm_strip7_mc_event",
+          "name": "TP-VoiceMeeter Strip[7].MC",
+          "format": "TP-VoiceMeeter Strip[7].MC=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_mc"
+        },
+        {
+          "id": "tpvm_strip7_postreverb_event",
+          "name": "TP-VoiceMeeter Strip[7].PostReverb",
+          "format": "TP-VoiceMeeter Strip[7].PostReverb=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_postreverb"
+        },
+        {
+          "id": "tpvm_strip7_postdelay_event",
+          "name": "TP-VoiceMeeter Strip[7].PostDelay",
+          "format": "TP-VoiceMeeter Strip[7].PostDelay=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_postdelay"
+        },
+        {
+          "id": "tpvm_strip7_postfx1_event",
+          "name": "TP-VoiceMeeter Strip[7].PostFx1",
+          "format": "TP-VoiceMeeter Strip[7].PostFx1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_postfx1"
+        },
+        {
+          "id": "tpvm_strip7_postfx2_event",
+          "name": "TP-VoiceMeeter Strip[7].PostFx2",
+          "format": "TP-VoiceMeeter Strip[7].PostFx2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_postfx2"
+        },
+        {
+          "id": "tpvm_strip7_a1_event",
+          "name": "TP-VoiceMeeter Strip[7].A1",
+          "format": "TP-VoiceMeeter Strip[7].A1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_a1"
+        },
+        {
+          "id": "tpvm_strip7_a2_event",
+          "name": "TP-VoiceMeeter Strip[7].A2",
+          "format": "TP-VoiceMeeter Strip[7].A2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_a2"
+        },
+        {
+          "id": "tpvm_strip7_a3_event",
+          "name": "TP-VoiceMeeter Strip[7].A3",
+          "format": "TP-VoiceMeeter Strip[7].A3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_a3"
+        },
+        {
+          "id": "tpvm_strip7_a4_event",
+          "name": "TP-VoiceMeeter Strip[7].A4",
+          "format": "TP-VoiceMeeter Strip[7].A4=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_a4"
+        },
+        {
+          "id": "tpvm_strip7_a5_event",
+          "name": "TP-VoiceMeeter Strip[7].A5",
+          "format": "TP-VoiceMeeter Strip[7].A5=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_a5"
+        },
+        {
+          "id": "tpvm_strip7_b1_event",
+          "name": "TP-VoiceMeeter Strip[7].B1",
+          "format": "TP-VoiceMeeter Strip[7].B1=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_b1"
+        },
+        {
+          "id": "tpvm_strip7_b2_event",
+          "name": "TP-VoiceMeeter Strip[7].B2",
+          "format": "TP-VoiceMeeter Strip[7].B2=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_b2"
+        },
+        {
+          "id": "tpvm_strip7_b3_event",
+          "name": "TP-VoiceMeeter Strip[7].B3",
+          "format": "TP-VoiceMeeter Strip[7].B3=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_strip7_b3"
+        }
+      ],
+      "states": [
+        {
+          "id": "tpvm_strip0_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[0].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip0_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip0_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[0].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[1].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip1_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip1_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[1].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[2].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip2_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip2_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[2].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[3].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip3_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip3_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[3].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[4].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip4_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip4_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[4].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[5].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip5_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip5_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[5].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[6].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip6_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip6_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[6].Fx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_solo",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].Solo",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_mc",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].MC",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_postreverb",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].PostReverb",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_postdelay",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].PostDelay",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_postfx1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].PostFx1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_postfx2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].PostFx2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_a1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].A1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_a2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].A2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_a3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].A3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_a4",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].A4",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_a5",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].A5",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_b1",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].B1",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_b2",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].B2",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_b3",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Strip[7].B3",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_strip7_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_pan_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Pan_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_pan_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Pan_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_color_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Color_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_color_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Color_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_fx_x",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].fx_x",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_fx_y",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].fx_y",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_comp",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Comp",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_gate",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Gate",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_limit",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Limit",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_eqgain1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].EQGain1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_eqgain2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].EQGain2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_eqgain3",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].EQGain3",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_reverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Reverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_delay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Delay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_fx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Fx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_strip7_fx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip[7].Fx2",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "id": "TPVoiceMeeterBusEvents",
+      "name": "TP-VoiceMeeter Bus Events",
+      "actions": [],
+      "events": [
+        {
+          "id": "tpvm_bus0_mono_event",
+          "name": "TP-VoiceMeeter Bus[0].Mono",
+          "format": "TP-VoiceMeeter Bus[0].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus0_mono"
+        },
+        {
+          "id": "tpvm_bus0_mute_event",
+          "name": "TP-VoiceMeeter Bus[0].Mute",
+          "format": "TP-VoiceMeeter Bus[0].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus0_mute"
+        },
+        {
+          "id": "tpvm_bus0_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[0].EQ.on",
+          "format": "TP-VoiceMeeter Bus[0].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus0_eq.on"
+        },
+        {
+          "id": "tpvm_bus0_sel_event",
+          "name": "TP-VoiceMeeter Bus[0].Sel",
+          "format": "TP-VoiceMeeter Bus[0].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus0_sel"
+        },
+        {
+          "id": "tpvm_bus1_mono_event",
+          "name": "TP-VoiceMeeter Bus[1].Mono",
+          "format": "TP-VoiceMeeter Bus[1].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus1_mono"
+        },
+        {
+          "id": "tpvm_bus1_mute_event",
+          "name": "TP-VoiceMeeter Bus[1].Mute",
+          "format": "TP-VoiceMeeter Bus[1].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus1_mute"
+        },
+        {
+          "id": "tpvm_bus1_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[1].EQ.on",
+          "format": "TP-VoiceMeeter Bus[1].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus1_eq.on"
+        },
+        {
+          "id": "tpvm_bus1_sel_event",
+          "name": "TP-VoiceMeeter Bus[1].Sel",
+          "format": "TP-VoiceMeeter Bus[1].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus1_sel"
+        },
+        {
+          "id": "tpvm_bus2_mono_event",
+          "name": "TP-VoiceMeeter Bus[2].Mono",
+          "format": "TP-VoiceMeeter Bus[2].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus2_mono"
+        },
+        {
+          "id": "tpvm_bus2_mute_event",
+          "name": "TP-VoiceMeeter Bus[2].Mute",
+          "format": "TP-VoiceMeeter Bus[2].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus2_mute"
+        },
+        {
+          "id": "tpvm_bus2_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[2].EQ.on",
+          "format": "TP-VoiceMeeter Bus[2].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus2_eq.on"
+        },
+        {
+          "id": "tpvm_bus2_sel_event",
+          "name": "TP-VoiceMeeter Bus[2].Sel",
+          "format": "TP-VoiceMeeter Bus[2].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus2_sel"
+        },
+        {
+          "id": "tpvm_bus3_mono_event",
+          "name": "TP-VoiceMeeter Bus[3].Mono",
+          "format": "TP-VoiceMeeter Bus[3].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus3_mono"
+        },
+        {
+          "id": "tpvm_bus3_mute_event",
+          "name": "TP-VoiceMeeter Bus[3].Mute",
+          "format": "TP-VoiceMeeter Bus[3].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus3_mute"
+        },
+        {
+          "id": "tpvm_bus3_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[3].EQ.on",
+          "format": "TP-VoiceMeeter Bus[3].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus3_eq.on"
+        },
+        {
+          "id": "tpvm_bus3_sel_event",
+          "name": "TP-VoiceMeeter Bus[3].Sel",
+          "format": "TP-VoiceMeeter Bus[3].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus3_sel"
+        },
+        {
+          "id": "tpvm_bus4_mono_event",
+          "name": "TP-VoiceMeeter Bus[4].Mono",
+          "format": "TP-VoiceMeeter Bus[4].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus4_mono"
+        },
+        {
+          "id": "tpvm_bus4_mute_event",
+          "name": "TP-VoiceMeeter Bus[4].Mute",
+          "format": "TP-VoiceMeeter Bus[4].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus4_mute"
+        },
+        {
+          "id": "tpvm_bus4_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[4].EQ.on",
+          "format": "TP-VoiceMeeter Bus[4].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus4_eq.on"
+        },
+        {
+          "id": "tpvm_bus4_sel_event",
+          "name": "TP-VoiceMeeter Bus[4].Sel",
+          "format": "TP-VoiceMeeter Bus[4].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus4_sel"
+        },
+        {
+          "id": "tpvm_bus5_mono_event",
+          "name": "TP-VoiceMeeter Bus[5].Mono",
+          "format": "TP-VoiceMeeter Bus[5].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus5_mono"
+        },
+        {
+          "id": "tpvm_bus5_mute_event",
+          "name": "TP-VoiceMeeter Bus[5].Mute",
+          "format": "TP-VoiceMeeter Bus[5].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus5_mute"
+        },
+        {
+          "id": "tpvm_bus5_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[5].EQ.on",
+          "format": "TP-VoiceMeeter Bus[5].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus5_eq.on"
+        },
+        {
+          "id": "tpvm_bus5_sel_event",
+          "name": "TP-VoiceMeeter Bus[5].Sel",
+          "format": "TP-VoiceMeeter Bus[5].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus5_sel"
+        },
+        {
+          "id": "tpvm_bus6_mono_event",
+          "name": "TP-VoiceMeeter Bus[6].Mono",
+          "format": "TP-VoiceMeeter Bus[6].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus6_mono"
+        },
+        {
+          "id": "tpvm_bus6_mute_event",
+          "name": "TP-VoiceMeeter Bus[6].Mute",
+          "format": "TP-VoiceMeeter Bus[6].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus6_mute"
+        },
+        {
+          "id": "tpvm_bus6_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[6].EQ.on",
+          "format": "TP-VoiceMeeter Bus[6].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus6_eq.on"
+        },
+        {
+          "id": "tpvm_bus6_sel_event",
+          "name": "TP-VoiceMeeter Bus[6].Sel",
+          "format": "TP-VoiceMeeter Bus[6].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus6_sel"
+        },
+        {
+          "id": "tpvm_bus7_mono_event",
+          "name": "TP-VoiceMeeter Bus[7].Mono",
+          "format": "TP-VoiceMeeter Bus[7].Mono=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus7_mono"
+        },
+        {
+          "id": "tpvm_bus7_mute_event",
+          "name": "TP-VoiceMeeter Bus[7].Mute",
+          "format": "TP-VoiceMeeter Bus[7].Mute=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus7_mute"
+        },
+        {
+          "id": "tpvm_bus7_eq.on_event",
+          "name": "TP-VoiceMeeter Bus[7].EQ.on",
+          "format": "TP-VoiceMeeter Bus[7].EQ.on=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus7_eq.on"
+        },
+        {
+          "id": "tpvm_bus7_sel_event",
+          "name": "TP-VoiceMeeter Bus[7].Sel",
+          "format": "TP-VoiceMeeter Bus[7].Sel=$val",
+          "type": "communicate",
+          "valueType": "choice",
+          "valueChoices": [
+            "0",
+            "1"
+          ],
+          "valueStateId": "tpvm_bus7_sel"
+        }
+      ],
+      "states": [
+        {
+          "id": "tpvm_bus0_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[0].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus0_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[0].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus0_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[0].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus0_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[0].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus0_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[0].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus0_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[0].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus0_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[0].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus0_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[0].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus0_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[0].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus1_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[1].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus1_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[1].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus1_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[1].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus1_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[1].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus1_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[1].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus1_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[1].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus1_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[1].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus1_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[1].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus1_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[1].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus2_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[2].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus2_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[2].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus2_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[2].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus2_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[2].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus2_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[2].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus2_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[2].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus2_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[2].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus2_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[2].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus2_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[2].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus3_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[3].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus3_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[3].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus3_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[3].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus3_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[3].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus3_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[3].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus3_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[3].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus3_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[3].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus3_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[3].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus3_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[3].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus4_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[4].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus4_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[4].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus4_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[4].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus4_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[4].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus4_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[4].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus4_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[4].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus4_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[4].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus4_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[4].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus4_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[4].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus5_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[5].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus5_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[5].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus5_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[5].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus5_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[5].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus5_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[5].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus5_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[5].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus5_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[5].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus5_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[5].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus5_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[5].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus6_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[6].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus6_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[6].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus6_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[6].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus6_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[6].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus6_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[6].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus6_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[6].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus6_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[6].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus6_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[6].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus6_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[6].ReturnFx2",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus7_mono",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[7].Mono",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus7_mute",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[7].Mute",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus7_eq.on",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[7].EQ.on",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus7_sel",
+          "type": "choice",
+          "desc": "TP-VoiceMeeter Bus[7].Sel",
+          "default": "0",
+          "valueChoices": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "id": "tpvm_bus7_gain",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[7].Gain",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus7_returnreverb",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[7].ReturnReverb",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus7_returndelay",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[7].ReturnDelay",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus7_returnfx1",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[7].ReturnFx1",
+          "default": ""
+        },
+        {
+          "id": "tpvm_bus7_returnfx2",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Bus[7].ReturnFx2",
+          "default": ""
+        }
+      ]
+    }
+  ]
+}
