@@ -239,9 +239,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level0_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[0] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level1",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[1]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level1_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[1] (rounded to an integer)",
           "default": ""
         },
         {
@@ -251,9 +263,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level2_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[2] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level3",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[3]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level3_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[3] (rounded to an integer)",
           "default": ""
         },
         {
@@ -263,9 +287,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level4_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[4] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level5",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[5]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level5_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[5] (rounded to an integer)",
           "default": ""
         },
         {
@@ -275,9 +311,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level6_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[6] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level7",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[7]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level7_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[7] (rounded to an integer)",
           "default": ""
         },
         {
@@ -287,9 +335,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level8_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[8] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level9",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[9]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level9_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[9] (rounded to an integer)",
           "default": ""
         },
         {
@@ -299,9 +359,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level10_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[10] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level11",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[11]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level11_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[11] (rounded to an integer)",
           "default": ""
         },
         {
@@ -311,9 +383,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level12_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[12] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level13",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[13]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level13_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[13] (rounded to an integer)",
           "default": ""
         },
         {
@@ -323,9 +407,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level14_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[14] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level15",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[15]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level15_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[15] (rounded to an integer)",
           "default": ""
         },
         {
@@ -335,9 +431,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level16_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[16] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level17",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[17]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level17_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[17] (rounded to an integer)",
           "default": ""
         },
         {
@@ -347,9 +455,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level18_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[18] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level19",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[19]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level19_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[19] (rounded to an integer)",
           "default": ""
         },
         {
@@ -359,9 +479,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level20_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[20] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level21",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[21]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level21_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[21] (rounded to an integer)",
           "default": ""
         },
         {
@@ -371,9 +503,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level22_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[22] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level23",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[23]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level23_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[23] (rounded to an integer)",
           "default": ""
         },
         {
@@ -383,9 +527,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level24_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[24] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level25",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[25]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level25_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[25] (rounded to an integer)",
           "default": ""
         },
         {
@@ -395,9 +551,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level26_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[26] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level27",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[27]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level27_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[27] (rounded to an integer)",
           "default": ""
         },
         {
@@ -407,9 +575,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level28_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[28] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level29",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[29]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level29_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[29] (rounded to an integer)",
           "default": ""
         },
         {
@@ -419,9 +599,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level30_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[30] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level31",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[31]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level31_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[31] (rounded to an integer)",
           "default": ""
         },
         {
@@ -431,9 +623,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_input_level32_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[32] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_input_level33",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip InputLevel[33]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_input_level33_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip InputLevel[33] (rounded to an integer)",
           "default": ""
         },
         {
@@ -443,9 +647,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level0_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[0] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level1",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[1]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level1_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[1] (rounded to an integer)",
           "default": ""
         },
         {
@@ -455,9 +671,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level2_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[2] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level3",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[3]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level3_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[3] (rounded to an integer)",
           "default": ""
         },
         {
@@ -467,9 +695,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level4_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[4] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level5",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[5]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level5_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[5] (rounded to an integer)",
           "default": ""
         },
         {
@@ -479,9 +719,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level6_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[6] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level7",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[7]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level7_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[7] (rounded to an integer)",
           "default": ""
         },
         {
@@ -491,9 +743,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level8_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[8] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level9",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[9]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level9_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[9] (rounded to an integer)",
           "default": ""
         },
         {
@@ -503,9 +767,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level10_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[10] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level11",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[11]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level11_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[11] (rounded to an integer)",
           "default": ""
         },
         {
@@ -515,9 +791,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level12_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[12] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level13",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[13]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level13_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[13] (rounded to an integer)",
           "default": ""
         },
         {
@@ -527,9 +815,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level14_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[14] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level15",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[15]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level15_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[15] (rounded to an integer)",
           "default": ""
         },
         {
@@ -539,9 +839,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level16_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[16] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level17",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[17]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level17_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[17] (rounded to an integer)",
           "default": ""
         },
         {
@@ -551,9 +863,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level18_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[18] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level19",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[19]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level19_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[19] (rounded to an integer)",
           "default": ""
         },
         {
@@ -563,9 +887,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level20_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[20] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level21",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[21]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level21_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[21] (rounded to an integer)",
           "default": ""
         },
         {
@@ -575,9 +911,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level22_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[22] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level23",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[23]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level23_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[23] (rounded to an integer)",
           "default": ""
         },
         {
@@ -587,9 +935,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level24_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[24] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level25",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[25]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level25_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[25] (rounded to an integer)",
           "default": ""
         },
         {
@@ -599,9 +959,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level26_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[26] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level27",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[27]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level27_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[27] (rounded to an integer)",
           "default": ""
         },
         {
@@ -611,9 +983,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level28_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[28] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level29",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[29]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level29_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[29] (rounded to an integer)",
           "default": ""
         },
         {
@@ -623,9 +1007,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level30_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[30] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level31",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[31]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level31_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[31] (rounded to an integer)",
           "default": ""
         },
         {
@@ -635,9 +1031,21 @@
           "default": ""
         },
         {
+          "id": "tpvm_output_level32_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[32] (rounded to an integer)",
+          "default": ""
+        },
+        {
           "id": "tpvm_output_level33",
           "type": "text",
           "desc": "TP-VoiceMeeter Strip OutputLevel[33]",
+          "default": ""
+        },
+        {
+          "id": "tpvm_output_level33_int",
+          "type": "text",
+          "desc": "TP-VoiceMeeter Strip OutputLevel[33] (rounded to an integer)",
           "default": ""
         }
       ]

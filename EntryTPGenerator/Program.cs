@@ -25,8 +25,15 @@ namespace EntryTPGenerator
                             { "desc", $"TP-VoiceMeeter Strip InputLevel[{i}]" },
                             { "default", "" }
                         };
+                    var st_int = new JObject {
+                            { "id", $"tpvm_input_level{i}_int" },
+                            { "type", "text" },
+                            { "desc", $"TP-VoiceMeeter Strip InputLevel[{i}] (rounded to an integer)" },
+                            { "default", "" }
+                        };
 
                     ((JArray)entry.categories[0].states).Add(st);
+                    ((JArray)entry.categories[0].states).Add(st_int);
                 }
 
                 for (int i = 0; i < VmData.OutputLevels; i++)
@@ -38,7 +45,15 @@ namespace EntryTPGenerator
                             { "default", "" }
                         };
 
+                    var st_int = new JObject {
+                            { "id", $"tpvm_output_level{i}_int" },
+                            { "type", "text" },
+                            { "desc", $"TP-VoiceMeeter Strip OutputLevel[{i}] (rounded to an integer)" },
+                            { "default", "" }
+                        };
+
                     ((JArray)entry.categories[0].states).Add(st);
+                    ((JArray)entry.categories[0].states).Add(st_int);
                 }
 
                 for (int i = 0; i < 8; i++)

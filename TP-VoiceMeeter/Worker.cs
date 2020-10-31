@@ -73,7 +73,10 @@ namespace TP_VoiceMeeter
                 {
                     _inputLevels[i] = level;
                     if (sendUpdateMessage)
+                    {
                         _messageProcessor.UpdateState(new StateUpdate() { Id = $"tpvm_input_level{i}", Value = level.ToString(floatFormat) });
+                        _messageProcessor.UpdateState(new StateUpdate() { Id = $"tpvm_input_level{i}_int", Value = Math.Round((double)level).ToString() });
+                    }
                 }
             }
 
@@ -84,7 +87,10 @@ namespace TP_VoiceMeeter
                 {
                     _outputLevels[i] = level;
                     if (sendUpdateMessage)
+                    {
                         _messageProcessor.UpdateState(new StateUpdate() { Id = $"tpvm_output_level{i}", Value = level.ToString(floatFormat) });
+                        _messageProcessor.UpdateState(new StateUpdate() { Id = $"tpvm_output_level{i}_int", Value = Math.Round((double)level).ToString() });
+                    }
                 }
             }
 
