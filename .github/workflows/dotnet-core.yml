@@ -26,9 +26,9 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj
     - name: Publish
-      run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o TP-VoiceMeeter/
+      run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o package/TP-VoiceMeeter/
     - name: Package
-      run: zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
+      run: zip -v -r TP-VoiceMeeter.tpp package/TP-VoiceMeeter
     - name: Upload Release
       uses: actions/upload-release-asset@v1
       env:
