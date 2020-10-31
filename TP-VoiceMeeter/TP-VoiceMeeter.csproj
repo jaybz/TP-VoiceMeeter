@@ -5,6 +5,7 @@
     <UserSecretsId>dotnet-TP_VoiceMeeter-ED472CF4-8E68-4A66-A885-87122E7316F9</UserSecretsId>
     <RootNamespace>TP_VoiceMeeter</RootNamespace>
     <StartupObject></StartupObject>
+    <Version>0.8.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
