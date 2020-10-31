@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -21,10 +21,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj
     - name: Publish
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o package/TP-VoiceMeeter/
-    - name: Package
-      run: cd package && zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: TP-VoiceMeeter.tpp
-        package/path: TP-VoiceMeeter.tpp
+        name: build
+        path: package/*
