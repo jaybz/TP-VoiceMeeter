@@ -38,8 +38,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: release
-    - name: List Files
-      run: find .
+        path: TP-VoiceMeeter
     - name: Package
       run: zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
     - name: Upload Release
