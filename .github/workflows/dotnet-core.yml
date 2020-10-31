@@ -23,3 +23,5 @@ jobs:
       run: dotnet build --configuration Release --no-restore TP-VoiceMeeter\TP-VoiceMeeter.csproj
     - name: Publish
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter\TP-VoiceMeeter.csproj -o package\
+    - name: Package
+      run: zip -v -r TP-VoiceMeeter.zip package\*
