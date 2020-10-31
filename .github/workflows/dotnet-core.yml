@@ -28,13 +28,13 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o package/TP-VoiceMeeter/
     - name: Package
-      run: zip -v -r TP-VoiceMeeter.tpp package/TP-VoiceMeeter
+      run: cd package && zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
     - name: Upload Release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: TP-VoiceMeeter.tpp
+        asset_path: package/TP-VoiceMeeter.tpp
         asset_name: TP-VoiceMeeter.tpp
         asset_content_type: application/zip
