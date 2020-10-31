@@ -5,9 +5,21 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TP-VoiceMeeter", "TP-VoiceMeeter\TP-VoiceMeeter.csproj", "{82E4D035-7F86-4BCF-8F3C-D6287BDF6EF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryTPGenerator", "EntryTPGenerator\EntryTPGenerator.csproj", "{C6758CEA-75A0-4F1E-BBE9-53AADEA7AC25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntryTPGenerator", "EntryTPGenerator\EntryTPGenerator.csproj", "{C6758CEA-75A0-4F1E-BBE9-53AADEA7AC25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceMeeterWrapper", "VoiceMeeterWrapper\VoiceMeeterWrapper.csproj", "{B110591C-B943-49CB-9650-2F4B38467A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoiceMeeterWrapper", "VoiceMeeterWrapper\VoiceMeeterWrapper.csproj", "{B110591C-B943-49CB-9650-2F4B38467A83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other Files", "Other Files", "{A33E6A1F-960B-46C8-B435-2572340AB0E2}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github Workflows", "Github Workflows", "{64098496-4CFA-4D80-88E2-0DE09E62AE74}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

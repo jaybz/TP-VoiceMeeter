@@ -3,10 +3,7 @@
   "version": 1,
   "name": "TP-VoiceMeeter Plugin",
   "id": "TPVoiceMeeter",
-  "configuration": {
-    "colorDark": "#225834",
-    "colorLight": "#45b168"
-  },
+  "configuration": {},
   "plugin_start_cmd": "\"%TP_PLUGIN_FOLDER%TP-VoiceMeeter\\TP-VoiceMeeter.exe\"",
   "categories": [
     {
