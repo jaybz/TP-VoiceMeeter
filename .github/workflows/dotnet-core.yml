@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore TP-VoiceMeeter\TP-VoiceMeeter.csproj
     - name: Build
       run: dotnet build --configuration Release --no-restore TP-VoiceMeeter\TP-VoiceMeeter.csproj
     - name: Publish
