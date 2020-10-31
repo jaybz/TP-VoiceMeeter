@@ -2,6 +2,10 @@ name: .NET Core
 
 on:
   push:
+    branches:
+      - '!release'
+    tags:
+      - '!v*'
   pull_request:
     branches:
       - 'release'
