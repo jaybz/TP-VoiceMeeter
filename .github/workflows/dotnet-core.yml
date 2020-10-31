@@ -26,4 +26,9 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o package/
     - name: Package
-      run: zip -v -r TP-VoiceMeeter.tpp package\*
+      run: zip -v -r TP-VoiceMeeter.tpp package/*
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Release
+        path: TP-VoiceMeeter.tpp
