@@ -11,11 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Get release info
-      id: get_release
-      uses: bruceadams/get-release@v1.2.2
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -31,5 +26,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Release
+        name: TP-VoiceMeeter.tpp
         package/path: TP-VoiceMeeter.tpp
