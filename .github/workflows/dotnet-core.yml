@@ -19,12 +19,11 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore TP-VoiceMeeter\
+    - name: Show files
+      run: find .
     - name: Build
       run: dotnet build --configuration Release --no-restore TP-VoiceMeeter\TP-VoiceMeeter\TP-VoiceMeeter.csproj
     - name: Publish
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter\TP-VoiceMeeter\TP-VoiceMeeter.csproj -o package\
     - name: Package
-      uses: thedoctor0/zip-release@master
-      with:
-        filename: 'release.zip'
-        path: 'package/.'
+      run: zip -v -r TP-VoiceMeeter.tpp package\*
