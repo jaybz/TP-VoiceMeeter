@@ -12,7 +12,7 @@ namespace EntryTPGenerator
         [STAThread]
         static void Main(string[] args)
         {
-            using (TextReader tr = new StreamReader("base.json"))
+            using (TextReader tr = new StreamReader($"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\\base.json"))
             {
                 var json = tr.ReadToEnd();
                 dynamic entry = JToken.Parse(json);
@@ -127,7 +127,15 @@ namespace EntryTPGenerator
                 }
 
                 string entryJson = ((JToken)entry).ToString();
-                Clipboard.SetText(entryJson);
+                if (args.Length > 0 && args[0].Length > 0)
+                { // save to file
+                    TextWriter output = new StreamWriter(args[0]);
+                    output.Write(entryJson);
+                }
+                else
+                { // copy to clipboard
+                    Clipboard.SetText(entryJson);
+                }
             }
         }
     }
