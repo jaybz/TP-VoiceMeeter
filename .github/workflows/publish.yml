@@ -7,32 +7,46 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Get release info
-      id: get_release
-      uses: bruceadams/get-release@v1.2.2
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore TP-VoiceMeeter
-    - name: Build
-      run: dotnet build --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj
-    - name: Publish
+      run: dotnet restore
+    - name: Build TP-VoiceMeeter
       run: dotnet publish --configuration Release --no-restore TP-VoiceMeeter/TP-VoiceMeeter.csproj -o package/TP-VoiceMeeter/
+    - name: Generate entry.tp
+      run: dotnet publish --configuration Release --no-restore EntryTPGenerator/EntryTPGenerator.csproj -o package/EntryTPGenerator/ && package/EntryTPGenerator/EntryTPGenerator.exe package/TP-VoiceMeeter/entry.tp
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: release
+        path: package/TP-VoiceMeeter
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Get release info
+      id: get_release
+      uses: bruceadams/get-release@v1.2.2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - uses: actions/download-artifact@v2
+      with:
+        name: release
+        path: TP-VoiceMeeter
     - name: Package
-      run: cd package && zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
+      run: zip -v -r TP-VoiceMeeter.tpp TP-VoiceMeeter
     - name: Upload Release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: package/TP-VoiceMeeter.tpp
+        asset_path: TP-VoiceMeeter.tpp
         asset_name: TP-VoiceMeeter.tpp
         asset_content_type: application/zip
