@@ -9,5 +9,6 @@ Another VoiceMeeter plugin already exists for Touch Portal. I created this plugi
 - Since TP-VoiceMeeter uses [TouchPortalAPI](https://github.com/tlewis17/TouchPortalAPI), any known issues with that also affect TP-VoiceMeeter.
 
 ## Credits
-- The integration into Touch Portal is implemented via [TouchPortalAPI](https://github.com/tlewis17/TouchPortalAPI)
+- The integration into Touch Portal uses [TouchPortalAPI](https://github.com/tlewis17/TouchPortalAPI)
+- Generating entry.tp performs JSON serialization and deserialization using [Json.NET](https://github.com/JamesNK/Newtonsoft.Json)
 - This app uses modified VoiceMeeter C# wrapper code taken from [VoiceMeeter Wrapper and simple client application to interface with nanokontrol 2](https://github.com/tocklime/VoiceMeeterWrapper/)
