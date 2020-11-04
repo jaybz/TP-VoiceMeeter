@@ -32,6 +32,7 @@ namespace TP_VoiceMeeter
             _vmClient = new VmClient();
             _vmClient.Poll();
 
+            // initialize states
             Dictionary<string, float> initStripState = new Dictionary<string, float>();
             Dictionary<string, float> initBusState = new Dictionary<string, float>();
 
@@ -131,13 +132,6 @@ namespace TP_VoiceMeeter
 
             // On Action Event
             _messageProcessor.OnActionEvent += (actionId, dataList) => {
-                /*
-                Console.WriteLine($"{DateTime.Now} Action {actionId} Event Fired.");
-                foreach (var o in dataList)
-                {
-                    Console.WriteLine($"Id: {o.Id} Value: {o.Value}");
-                }
-                */
                 var index = dataList.Where(d => d.Id.Equals("tpvm_index"))?.First()?.Value;
                 var strip_setting = dataList.Where(d => d.Id.Equals("tpvm_toggle"));
                 var bus_setting = dataList.Where(d => d.Id.Equals("tpvm_setting"));
@@ -188,7 +182,6 @@ namespace TP_VoiceMeeter
                 while (!stoppingToken.IsCancellationRequested && !stopRequested)
                 {
                     UpdateState();
-                    //_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                     await Task.Delay(100, stoppingToken);
                 }
             }

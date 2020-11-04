@@ -23,7 +23,6 @@ namespace VoiceMeeterWrapper
         }
         public VmClient()
         {
-            //Find Voicemeeter dir.
             var vmDir = GetVoicemeeterDir();
             var vmDll = Environment.Is64BitProcess ? "VoicemeeterRemote64.dll" : "VoicemeeterRemote.dll";
             Console.WriteLine($"VoiceMeeter found at {vmDir}\\{vmDll}");
@@ -38,7 +37,6 @@ namespace VoiceMeeterWrapper
                     Console.WriteLine("Attached. Was already logged in");
                     break;
                 case VbLoginResponse.OkVoicemeeterNotRunning:
-                    //Launch.
                     Console.WriteLine("Attached. VM Not running.");
                     break;
                 default:
