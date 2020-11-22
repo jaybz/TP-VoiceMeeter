@@ -6,6 +6,7 @@ Another VoiceMeeter plugin already exists for Touch Portal. I created this plugi
 
 ## Known issues
 - The level states that report dB in decimal form do not work with Touch Portal's less than and higher than conditions as those do not work with numbers with a decimal part. You can use duplicate level states that round off the decimal values to integers. There aren't any duplicate states for other decimal states.
+- The plugin is hardcoded VoiceMeeter Potato. Don't try to access strips/buses/channels that isn't present in your version of VoiceMeeter, or you may end up having a bad time.
 - Since TP-VoiceMeeter uses [TouchPortalAPI](https://github.com/tlewis17/TouchPortalAPI), any known issues with that also affect TP-VoiceMeeter.
 
 ## Credits
