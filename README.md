@@ -1,6 +1,9 @@
 # TP-VoiceMeeter
 VoiceMeeter plugin for Touch Portal
 
+## Deprecated
+This plugin is now deprecated and will no longer be maintained. Use the [Touch Portal Voicemeeter Pickel+](https://www.christophecvb.com/touch-portal/plugins/voicemeeter/) Plugin instead.
+
 ## Disclaimer
 Another VoiceMeeter plugin already exists for Touch Portal. I created this plugin just because I really wanted to ditch another piece of software similar to Touch Portal and the other plugin did not fit my needs entirely. I do not currently intend on continuing development of this plugin. This is intended as sample .Net code for other developers.
 
